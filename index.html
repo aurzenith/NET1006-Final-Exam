@@ -1,1 +1,90 @@
-<h1>Hello!</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NET1006 Flashcards</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+      background-color: #f0f0f0;
+    }
+    .flashcard {
+      background: white;
+      padding: 2rem;
+      margin: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      max-width: 600px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .flashcard:hover {
+      transform: scale(1.02);
+    }
+    .controls {
+      margin-top: 1rem;
+    }
+    button {
+      margin: 0 1rem;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>NET1006 Flashcards</h1>
+  <div id="card" class="flashcard">Loading...</div>
+  <div class="controls">
+    <button onclick="prevCard()">Previous</button>
+    <button onclick="flipCard()">Flip</button>
+    <button onclick="nextCard()">Next</button>
+  </div>
+
+  <script>
+    const flashcards = [
+      { q: "What is a protocol?", a: "A set of rules that govern data communications." },
+      { q: "What does OSI stand for?", a: "Open Systems Interconnection" },
+      { q: "Name the OSI layers in order.", a: "Application, Presentation, Session, Transport, Network, Data Link, Physical" },
+      { q: "What is TCP/IP?", a: "A set of communication protocols used for the internet and similar networks." },
+      { q: "What is the function of the Data Link Layer?", a: "It handles error detection and framing for node-to-node data transfer." },
+      { q: "What is the Transport Layer responsible for?", a: "Reliable data transfer, error recovery, and flow control." },
+      { q: "What is the role of IP?", a: "Routing packets from source to destination based on IP addresses." }
+      // Add more based on your .md file content
+    ];
+
+    let index = 0;
+    let flipped = false;
+
+    function showCard() {
+      const card = document.getElementById("card");
+      const content = flipped ? flashcards[index].a : flashcards[index].q;
+      card.textContent = content;
+    }
+
+    function flipCard() {
+      flipped = !flipped;
+      showCard();
+    }
+
+    function nextCard() {
+      index = (index + 1) % flashcards.length;
+      flipped = false;
+      showCard();
+    }
+
+    function prevCard() {
+      index = (index - 1 + flashcards.length) % flashcards.length;
+      flipped = false;
+      showCard();
+    }
+
+    showCard();
+  </script>
+</body>
+</html>
