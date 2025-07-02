@@ -2,6 +2,7 @@
 
 h1{
     text-align: center;
+    color: #fff;
 }
 
 * {
@@ -72,4 +73,11 @@ button {
     margin: 0 1rem;
     padding: 0.5rem 1rem;
     font-size: 1rem;
+}
+
+
+body {
+    background-color: rgb(42, 44, 44);
+    text-align: center;
+    color: #fff;
 }
